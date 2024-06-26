@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的主页</title>
+    <style>
+        body{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .bg1{
+            position: absolute;
+            background-image: linear-gradient(to left, #C485C8 , #A984C1);
+            width: 1200px;
+            height: 450px;
+            border-radius: 0 60% 45% 20%;
+            transform: rotate(-40deg);
+            top:200px;
+            left:-300px;
+        }
+        .bg2{
+            position: absolute;
+            background-image: linear-gradient(to left, #AA7AB2 , #8A88C0);
+            width: 1000px;
+            height: 400px;
+            border-radius: 50% 100% 50% 50%;
+            transform: rotate(-30deg);
+            bottom:10px;
+            right:-200px;
+        }
+        .login{
+            width: 80vw;
+            height: 70vh;
+            position: absolute;
+            top:calc(50vh);
+            left:calc(50vw);
+            transform: translate(-50%,-50%);
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 0 50px #888888;
+        }
+        .login-left{
+            background: #fff;
+            flex:1;
+        }
+        .login-right{
+            background-image: linear-gradient(to left bottom,#413D9E,#C244BF);
+            flex:1;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Chrome, Safari, Opera */
+        @-webkit-keyframes meteor-move1 {
+            0%{}
+            70% {top:1050px;left: -700px;}
+            100% {top:1050px;left: -700px;}
+        }
+        @-webkit-keyframes meteor-move2 {
+            0%{}
+            70% {top:1250px;left: -800px}
+            100% {top:1250px;left: -800px;}
+        }
+        @-webkit-keyframes meteor-move3 {
+            0%{}
+            70% {top:1250px;right: 1050px}
+            100% {top:1250px;right: 1050px}
+        }
+        /* Chrome, Safari, Opera */
+        @-webkit-keyframes airplane-move {
+            0% {left: -10%;}
+            100% {left: 100%;}
+        }
+        @-webkit-keyframes cloud-move1 {
+            0% {}
+            100% { right: 90px;}
+        }
+        @-webkit-keyframes cloud-move2 {
+            0% {}
+            100% { left: 260px;}
+        }
+        @-webkit-keyframes star-flicker {
+            0% {background: white;}
+            90% {background: white;}
+            100% { background: #413D9E;}
+        }
+        .airplane{
+            animation: airplane-move 10s infinite linear;
+            position: absolute;
+            top:90px;
+            left: 100px;
+            width: 40px;
+            height: 40px;
+            transform: rotateX(-50deg);
+        }
+        .airplane::after{
+            content: '';
+            display: block;
+            position: absolute;
+            background: #ffffff55;
+            height: 10px;
+            width: 1000px;
+            top: 50%;
+            right: 100%;
+            transform: translate(0,-50%);
+            box-shadow: 0 0 20px #fff;
+        }
+        .airplane svg{
+            width: 100%;
+            height: 100%;
+        }
+        .moon{
+            position: absolute;
+            top:60px;
+            right: 160px;
+            width: 30px;
+            height: 30px;
+            /*filter: drop-shadow(0px 0px 10px #fff);*/
+            padding: 30px;
+            background-image: radial-gradient(farthest-side at 50% 50%, #ffffff99 1%, #00000000 99%);
+        }
+        .cloud{
+            animation: cloud-move1 4s infinite alternate;
+            animation-delay: 3s;
+            position: absolute;
+            top:160px;
+            right: 70px;
+            display: block;
+            content: "";
+            width: 80px;
+            height: 80px;
+        }
+        .cloud2{
+            animation: cloud-move2 4s infinite alternate-reverse;
+            animation-delay: 2s;
+            position: absolute;
+            top:100px;
+            left: 280px;
+            display: block;
+            content: "";
+            width: 100px;
+            height: 100px;
+        }
+        .meteor{
+            position: absolute;
+            background-image: linear-gradient(to left, #9260C500 , #ffffff55);
+            width: 60px;
+            height: 4px;
+            border-radius: 4px;
+            transform: rotate(-45deg);
+            box-shadow: -1px 0 2px #ffffff22;
+        }
+        .star{
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 10px #ffffff;
+            animation: star-flicker 4s infinite linear;
+            animation-delay: 2s;
+        }
+        .balloon1{
+            z-index: 10;
+            position: absolute;
+            bottom: 100px;
+            left: 35%;
+            transform: translate(-50%,0);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-image: linear-gradient(to bottom,#FCB0DC,#FFD0DC 30%);
+        }
+        .balloon1::after{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 100px;
+            width: 6px;
+            background-image: linear-gradient(to bottom,#FFD0DC,#F9F4F8);
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .balloon2{
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translate(-50%,0);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-image: linear-gradient(to bottom,#F7CCF3,#FCDCF9 30%);
+        }
+        .balloon2::after{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 140px;
+            width: 10px;
+            background-image: linear-gradient(to bottom,#FCDCF9,#F9F4F8);
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .balloon3{
+            position: absolute;
+            bottom: 80px;
+            left: 65%;
+            transform: translate(-50%,0);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-image: linear-gradient(to bottom,#D496FF,#E2A7FB 30%);
+        }
+        .balloon3::after{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 80px;
+            width: 4px;
+            background-image: linear-gradient(to bottom,#E2A7FB,#F9F4F8);
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .balloon4{
+            position: absolute;
+            bottom: 50px;
+            left: 80%;
+            transform: translate(-50%,0);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: linear-gradient(to bottom,#EBE7FF,#D0CCD6 30%);
+        }
+        .balloon4::after{
+            content: '';
+            display: block;
+            position: absolute;
+            height: 50px;
+            width: 2px;
+            background-image: linear-gradient(to bottom,#D0CCD6,#F9F4F8);
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+
+
+
+
+
+        .login-left{
+            text-align: center;
+        }
+        .login-left h2{
+            font-size: 30px;
+            font-weight: bold;
+            color: #6A6A6A;
+            margin-top: 80px;
+            margin-bottom: 40px;
+        }
+        .login-input-group{
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .login-input-group svg{
+            position: absolute;
+            right: 10px;
+            top: 11px;
+            height: 30px;
+            width: 30px;
+        }
+        .login-input{
+            box-sizing: border-box;
+            display: block;
+            border: none;
+            border-bottom: 2px solid #D0D0D0;
+            width: 100%;
+            height: 60px;
+            color: black;
+            caret-color:#C244BF;
+            padding: 5px 10px;
+            font-size: 16px;
+         }
+
+        .login-input:focus{
+            outline: 2px solid #C244BF;
+        }
+        .login-input::placeholder {
+            color: #898989;
+        }
+        .forget{
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+        }
+        .forget>*{
+            flex: 1
+        }
+        .forget>:first-child{
+            text-align: left;
+        }
+        .forget>:last-child{
+            text-align: right;
+        }
+        .login-button{
+            margin-top: 40px;
+            background: #A745B8;
+            border-radius: 30px;
+            height: 60px;
+            width: 200px;
+            border: none;
+            color: white;
+            padding: 10px;
+        }
+        .forget label{
+            font-size: 16px;
+            color: #7C7C7C;
+        }
+        .forget .forget-input{
+            position: relative;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        input[type=checkbox]:after {
+            display: inline-block;
+            content: "";
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+            background: #FFF;
+            border: 2px solid #A745B8;
+        }
+
+        input[type=checkbox]:checked:after {
+            line-height: 15px;
+            content: "✓";
+            font-size: 12px;
+            font-weight: bold;
+            color: #C244BF;
+            background-color: #FFF;
+            text-align: center;
+            border: 2px solid #A745B8;
+        }
+        .sign{
+            font-size: 16px;
+            color: #7C7C7C;
+        }
+        .login-left a{
+            color: #C244BF;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="login">
+<div class="login-left">
+    <h2>登录-Login</h2>
+    <div class="login-input-group">
+        <input class="login-input" name="user_name" placeholder="用户名/user name" type="text"/>
+        <svg t="1707036877164" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1349" width="200" height="200"><path d="M512 570.861563a285.430782 285.430782 0 1 1 285.430782-285.430781A285.703921 285.703921 0 0 1 512 570.861563z m0-516.233662a230.802881 230.802881 0 1 0 230.802881 230.802881A231.07602 231.07602 0 0 0 512 54.627901z" fill="#8F8F8F" p-id="1350"></path><path d="M1007.201921 1024h-54.627901a440.57402 440.57402 0 0 0-881.14804 0H16.798079a495.201921 495.201921 0 0 1 990.403842 0z" fill="#8F8F8F" p-id="1351"></path></svg>
+    </div>
+    <div class="login-input-group">
+        <input class="login-input" name="user_password" placeholder="密码/user password" type="password"/>
+        <svg t="1707036911836" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1581" width="200" height="200"><path d="M522.368 10.3936c-144.1536 0-252.9024 114.6624-252.9024 266.752l0 93.7472-8.192 0c-75.776 0-137.4464 63.3088-137.4464 141.0816l0 360.5248c0 77.7728 61.6704 141.1072 137.4464 141.1072l524.3392 0c75.776 0 137.4464-63.3344 137.4464-141.1072L923.0592 511.9744c0-77.7728-61.6704-141.0816-137.4464-141.0816l-4.5056 0c-1.2032-0.4352-2.4576-0.5632-3.712-0.768l0-93.0048C777.4464 125.0816 667.8016 10.3936 522.368 10.3936L522.368 10.3936zM522.368 52.224c123.52 0 213.248 94.592 213.248 224.9472l0 92.3648L311.3216 369.536l0-92.3648C311.3216 146.816 400.0768 52.224 522.368 52.224L522.368 52.224zM881.28 511.9744l0 360.5248c0 54.7328-42.9312 99.2768-95.616 99.2768L261.2992 971.776c-52.736 0-95.616-44.544-95.616-99.2768L165.6832 511.9744c0-54.7072 42.88-99.2512 95.616-99.2512l50.0224 0 0-1.3824 424.2688 0 0 1.3824 50.048 0C838.3488 412.7488 881.28 457.2672 881.28 511.9744L881.28 511.9744zM881.28 511.9744M518.8608 568.0384c-33.5104 0-60.672 28.0064-60.672 62.5664 0 23.1168 12.2368 43.3408 30.336 54.1696l0 102.1952c0 17.2544 13.568 31.3088 30.336 31.3088 16.7424 0 30.336-14.0544 30.336-31.3088L549.1968 684.8c18.0992-10.8288 30.3104-31.0272 30.3104-54.1696C579.456 596.0704 552.32 568.0384 518.8608 568.0384L518.8608 568.0384zM518.8608 568.0384" fill="#8F8F8F" p-id="1582"></path></svg>
+    </div>
+    <div class="forget">
+        <div>
+            <input class="forget-input" type="checkbox" id="scales" name="scales" checked />
+            <label for="scales">记住密码</label>
+        </div>
+        <a href="http://localhost:8080">忘记密码</a>
+    </div>
+    <button class="login-button">登录-Login</button>
+    <p class="sign">没有账号？<a href="#">快速注册</a></p>
+
+</div>
+<div class="login-right">
+    <div class="airplane">
+        <svg t="1707032630870" class=" icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="991" width="200" height="200"><path d="M918.4 420.8h-162.048L466.432 64h-133.76l133.76 356.8H193.28L79.04 330.24H0l67.328 268.992h399.104l-133.76 356.8h133.76l289.92-356.8h223.04c19.2 0 44.608 0 44.608-44.608 0-59.264-46.208-133.76-105.6-133.76z" fill="#D2C0E9" p-id="992" data-spm-anchor-id="a313x.manage_type_myprojects.0.i0.69e13a81NTlE6n" class="selected"></path></svg>
+    </div>
+    <svg t="1707028237838" class="cloud icon" viewBox="0 0 1355 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="996" width="200" height="200">
+        <defs>
+            <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#D5C3EB"/>
+                <stop offset="60%" stop-color="#8F73B6"/>
+                <stop offset="100%" stop-color="#6B4B9B"/>
+            </linearGradient>
+        </defs>
+        <path d="M1299.772238 471.021724a366.045786 366.045786 0 0 0-97.270943-99.189942 379.484778 379.484778 0 0 0-29.436982-123.509928 398.682766 398.682766 0 0 0-89.591948-127.986925 405.722762 405.722762 0 0 0-133.107922-91.511946A409.56176 409.56176 0 0 0 794.859534 0.026 401.242765 401.242765 0 0 0 568.319667 67.85896a411.481759 411.481759 0 0 0-97.909943 91.511947 261.735847 261.735847 0 0 0-63.994962-7.679996 247.656855 247.656855 0 0 0-176.623897 71.033958 245.736856 245.736856 0 0 0-72.312957 202.860882 325.729809 325.729809 0 0 0-84.471951 72.953957A309.731819 309.731819 0 0 0 0.053 703.959588a311.010818 311.010818 0 0 0 97.269943 229.099865 323.80981 323.80981 0 0 0 231.659864 90.871947h660.418613a360.926789 360.926789 0 0 0 255.97585-104.949938 360.926789 360.926789 0 0 0 81.272953-116.469932 355.166792 355.166792 0 0 0 27.516984-138.866919 345.567798 345.567798 0 0 0-54.394969-192.622887z" fill="url(#linear)" p-id="997"></path>
+    </svg>
+    <svg t="1707028237838" class="cloud2 icon" viewBox="0 0 1355 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="996" width="200" height="200">
+        <defs>
+            <linearGradient id="linear2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#6B4B9B"/>
+                <stop offset="100%" stop-color="#D5C3EB"/>
+            </linearGradient>
+        </defs>
+        <path d="M1299.772238 471.021724a366.045786 366.045786 0 0 0-97.270943-99.189942 379.484778 379.484778 0 0 0-29.436982-123.509928 398.682766 398.682766 0 0 0-89.591948-127.986925 405.722762 405.722762 0 0 0-133.107922-91.511946A409.56176 409.56176 0 0 0 794.859534 0.026 401.242765 401.242765 0 0 0 568.319667 67.85896a411.481759 411.481759 0 0 0-97.909943 91.511947 261.735847 261.735847 0 0 0-63.994962-7.679996 247.656855 247.656855 0 0 0-176.623897 71.033958 245.736856 245.736856 0 0 0-72.312957 202.860882 325.729809 325.729809 0 0 0-84.471951 72.953957A309.731819 309.731819 0 0 0 0.053 703.959588a311.010818 311.010818 0 0 0 97.269943 229.099865 323.80981 323.80981 0 0 0 231.659864 90.871947h660.418613a360.926789 360.926789 0 0 0 255.97585-104.949938 360.926789 360.926789 0 0 0 81.272953-116.469932 355.166792 355.166792 0 0 0 27.516984-138.866919 345.567798 345.567798 0 0 0-54.394969-192.622887z" fill="url(#linear2)" p-id="997"></path>
+    </svg>
+    <svg t="1707018989318" class="moon icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1008" id="mx_n_1707018989318" width="200" height="200"><path d="M618.496 111.616c9.216 34.304 14.336 70.656 14.336 108.032 0 228.352-184.832 413.184-413.184 413.184-37.376 0-73.728-5.12-108.544-14.336 47.616 175.616 207.872 305.152 398.848 305.152 228.352 0 413.184-184.832 413.184-413.184 0-190.976-129.024-351.232-304.64-398.848z" fill="#ffffff" p-id="1009"></path></svg>
+    <div class="meteor" style="top:50px;left: 300px;animation: meteor-move1 4s infinite linear;animation-delay: 3s;"></div>
+    <div class="meteor" style="top:250px;left: 200px;animation: meteor-move2 4s infinite linear;animation-delay: 4s;"></div>
+    <div class="meteor" style="top:250px;right: 50px;animation: meteor-move3 4s infinite linear;animation-delay: 5s;"></div>
+    <div class="star" style="top:30px;left: 300px;animation-delay: 2s;"></div>
+    <div class="star" style="top:250px;left: 300px;animation-delay: 4s;background: #ffffff55"> </div>
+    <div class="star" style="top:150px;right:50px;animation-delay: 5s;background: #ffffff55"></div>
+    <div class="star" style="top:350px;left: 50px;animation-delay: 6s;background: #ffffff55"></div>
+    <div class="balloon1"></div>
+    <div class="balloon2"></div>
+    <div class="balloon3"></div>
+    <div class="balloon4"></div>
+</div>
+</div>
+</body>
+</html>
